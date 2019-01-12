@@ -10,8 +10,8 @@ use Workerman\Worker;
 
 class Beanbun
 {
-    const VERSION = '1.0.4';
-
+    const VERSION = '1.0.5';
+    public $count = 4;
     public $id = null;
     public $name = null;
     public $max = 0;
@@ -108,7 +108,7 @@ class Beanbun
                 $this->queues = null;
                 echo "Beanbun is starting...\n";
                 fclose(STDOUT);
-                $STDOUT = fopen($this->logFile, "a");
+                fopen($this->logFile, "a");
                 break;
             case 'clean':
                 $this->queue()->clean();
@@ -161,7 +161,6 @@ class Beanbun
     {
         $error = false;
         $text = '';
-        $version_ok = $pcntl_loaded = $posix_loaded = true;
         if (!version_compare(phpversion(), "5.3.3", ">=")) {
             $text .= "PHP Version >= 5.3.3                 \033[31;40m [fail] \033[0m\n";
             $error = true;
@@ -182,8 +181,8 @@ class Beanbun
             "stream_socket_client",
             "pcntl_signal_dispatch",
         );
-
-        if ($disable_func_string = ini_get("disable_functions")) {
+        $disable_func_string = ini_get("disable_functions");
+        if ($disable_func_string) {
             $disable_func_map = array_flip(explode(",", $disable_func_string));
         }
 
@@ -406,7 +405,7 @@ class Beanbun
             if ($this->max > 0 && $this->queue()->queuedCount() >= $this->max) {
                 $this->log("Download to the upper limit, Beanbun worker {$this->id} stop downloading.");
                 self::timerDel($this->timer_id);
-                $this->error();
+                $this->error('Download to the upper limit');
             }
 
             $this->queue = $queue = $this->queue()->next();
@@ -416,7 +415,7 @@ class Beanbun
 
         if (is_null($queue) || !$queue) {
             sleep(30);
-            $this->error();
+            $this->error('empty queue');
         }
 
         if (!is_array($queue)) {
@@ -435,7 +434,7 @@ class Beanbun
         ], (array) $queue['options']);
 
         if ($this->daemonize && !$options['reserve'] && $this->queue()->isQueued($queue)) {
-            $this->error();
+            $this->error('is queued');
         }
 
         $this->url = $queue['url'];
@@ -454,7 +453,7 @@ class Beanbun
             $worker_id = isset($this->id) ? $this->worker->id : '';
             $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
         } else {
-            $this->error();
+            $this->error('default download page result is null');
         }
     }
 
@@ -462,7 +461,7 @@ class Beanbun
     {
         $countUrlFilter = count($this->urlFilter);
         if ($countUrlFilter === 1 && !$this->urlFilter[0]) {
-            $this->error();
+            $this->error('no countUrlFilter,'.$this->urlFilter[0]);
         }
 
         $urls = Helper::getUrlByHtml($this->page, $this->url);
