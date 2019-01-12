@@ -1,19 +1,19 @@
 {
-    "name": "kiddyu/beanbun",
-    "description" : "Beanbun 是用 PHP 编写的多进程网络爬虫框架，具有良好的开放性、高可扩展性",
+    "name": "xinrui5577/beanbun",
+    "description" : "老版本2018年4月份没有维护了.有bug,自己fork分支,自己维护,原来:Beanbun 是用 PHP 编写的多进程网络爬虫框架，具有良好的开放性、高可扩展性",
     "type": "application",
     "keywords": ["spider", "crawler", "scraper"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Kidd Yu",
-            "email": "58631254@qq.com"
+            "name": "Kidd Yu,xinrui5577",
+            "email": "xinrui5577@qq.com"
         }
     ],
     "require": {
         "php": ">=5.5.0",
         "workerman/workerman": "^3.3",
-        "guzzlehttp/guzzle": "^6.0"
+        "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-4": {
