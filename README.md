@@ -1,10 +1,11 @@
-<p align="center"><a href="https://github.com/kiddyuchina/Beanbun" target="_blank"><img width="200"src="http://otek15iea.bkt.clouddn.com/logo.jpg"></a></p>
- 
- <p align="center">
-  <a href="https://github.com/kiddyuchina/Beanbun/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square" alt="Build Status"></a>
-  <a href="https://github.com/kiddyuchina/Beanbun/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/kiddyuchina/Beanbun.svg?style=flat-square" alt="License"></a>
-  <a href="#"><img src="https://img.shields.io/badge/version-1.0.4-red.svg?style=flat-square" alt="Sauce Test Status"></a>
-</p>
+### 说明
+
+这是对Beanbun的运行中的更新.原始版本很久没更新.在linux 服务器运行有bug ,$count 属性不存在.php版本 7以下.
+根据自己运行需求.把几个问题修改了下.PHP版本升级到php7+,依赖库也升级了下.把Parser集成都一个项目,反正都要解析.
+后续如果有问题在更新
+
+
+一下是原始信息:
 
 ### 简介
 
