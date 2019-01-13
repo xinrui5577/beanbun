@@ -10,7 +10,7 @@ use Workerman\Worker;
 
 class Beanbun
 {
-    const VERSION = '1.0.5';
+    const VERSION = '1.1.0';
     public $count = 4;
     public $id = null;
     public $name = null;
@@ -88,7 +88,7 @@ class Beanbun
         $this->name = isset($config['name'])
         ? $config['name']
         : current(explode('.', $this->commands[0]));
-        $this->logFile = isset($config['logFile']) ? $config['logFile'] : __DIR__ . '/' . $this->name . '_access.log';
+         $this->logFile = isset($config['logFile']) ? $config['logFile'] : $this->name . '_access.log';
         $this->setQueue();
         $this->setDownloader();
         $this->setLog();
@@ -106,7 +106,7 @@ class Beanbun
                     }
                 }
                 $this->queues = null;
-                echo "Beanbun is starting...\n";
+                echo "Beanbun is starting...=>$this->logFile\n";
                 fclose(STDOUT);
                 fopen($this->logFile, "a");
                 break;
@@ -116,6 +116,7 @@ class Beanbun
                 die();
                 break;
             case 'stop':
+//                $this->worker->stop();
                 break;
             default:
                 break;

@@ -66,7 +66,7 @@ class Parser
 					}
 					return $item;
 				};
-				$data[$field['name']] = $this->ql->setQuery($rules)->getData($callback);
+				$data[$field['name']] = $this->ql->rules($rules)->query()->getData($callback);
 				if (is_null($data[$field['name']])) {
 					$data = [];
 					break;
