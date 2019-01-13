@@ -14,7 +14,7 @@
         "php": ">=5.5.0",
         "workerman/workerman": "^3.5",
         "guzzlehttp/guzzle": "^6.3",
-        "jaeger/querylist": ">3.2"
+        "jaeger/querylist": "^4.1"
     },
     "autoload": {
         "psr-4": {

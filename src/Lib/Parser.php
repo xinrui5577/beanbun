@@ -37,7 +37,7 @@ class Parser
 			return;
 		}
 
-		$this->ql = QueryList::Query($beanbun->page, []);
+		$this->ql = QueryList::html($beanbun->page);
 		$beanbun->data = $this->getData($beanbun->fields);
 	}
 
